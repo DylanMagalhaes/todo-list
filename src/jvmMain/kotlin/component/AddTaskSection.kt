@@ -12,6 +12,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
@@ -20,18 +21,31 @@ import androidx.compose.ui.unit.dp
 @Composable
 private fun AddTaskSectionPreview() {
     MaterialTheme {
-        AddTaskSection()
+        AddTaskSection(modifier = Modifier.padding(16.dp))
     }
 }
 
-@Composable fun AddTaskSection() {
+@Composable
+fun AddTaskSection(
+    modifier: Modifier,
+) {
     Surface(
-        shape = RoundedCornerShape(8.dp),
+        modifier = modifier,
+        shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colors.surface,
         elevation = 4.dp,
     ) {
-        Row(modifier = Modifier.padding(16.dp)) {
-            TextField(value = "hello world", onValueChange = {})
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextField(
+                value = "",
+                onValueChange = {},
+                placeholder = {
+                    Text("Enter a task")
+                }
+            )
 
             Spacer(modifier = Modifier.width(16.dp))
 
