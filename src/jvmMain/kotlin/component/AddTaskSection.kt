@@ -21,13 +21,21 @@ import androidx.compose.ui.unit.dp
 @Composable
 private fun AddTaskSectionPreview() {
     MaterialTheme {
-        AddTaskSection(modifier = Modifier.padding(16.dp))
+        AddTaskSection(
+            modifier = Modifier.padding(16.dp),
+            taskText = "",
+            onTaskFieldChange = {},
+            onAddClick = {}
+        )
     }
 }
 
 @Composable
 fun AddTaskSection(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
+    taskText: String,
+    onTaskFieldChange: (String) -> Unit,
+    onAddClick: () -> Unit,
 ) {
     Surface(
         modifier = modifier,
@@ -40,8 +48,8 @@ fun AddTaskSection(
             verticalAlignment = Alignment.CenterVertically
         ) {
             TextField(
-                value = "",
-                onValueChange = {},
+                value = taskText,
+                onValueChange = onTaskFieldChange,
                 placeholder = {
                     Text("Enter a task")
                 }
@@ -49,7 +57,7 @@ fun AddTaskSection(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            Button(onClick = {}) {
+            Button(onClick = onAddClick) {
                 Text(text = "Add")
             }
         }
